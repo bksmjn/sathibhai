@@ -1,4 +1,4 @@
- 	 	 	package com.codebhatti.sathibhai.configuration;
+package com.codebhatti.sathibhai.configuration;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackages={"com.codebhatti.sathibhai*"})
+@ComponentScan(basePackages={"com.codebhatti.*"})
 public class MvcConfig extends WebMvcConfigurerAdapter {
 	
 	public MvcConfig(){
@@ -54,11 +54,11 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 	    }
 	    
 
-		@Override
-		public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-			Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
-			builder.indentOutput(true).dateFormat(new SimpleDateFormat("yyyy-MM-dd"));
-			converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
-			converters.add(new MappingJackson2XmlHttpMessageConverter(builder.createXmlMapper(true).build()));
-		}
+//		@Override
+//		public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+//			Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
+//			builder.indentOutput(true).dateFormat(new SimpleDateFormat("yyyy-MM-dd"));
+//			converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
+//			converters.add(new MappingJackson2XmlHttpMessageConverter(builder.createXmlMapper(true).build()));
+//		}
 }

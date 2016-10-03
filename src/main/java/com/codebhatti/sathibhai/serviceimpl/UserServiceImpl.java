@@ -14,10 +14,30 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	public UserServiceImpl(){
+		System.out.println("Instantiating user Service......");
+	}
 
 	@Override
 	public List<User> findAllUsers() {
 		return this.userRepository.findAll();
 	}
 
+	@Override
+	public void addUser(User user) {
+		this.userRepository.addUser(user);
+		
+	}
+
+	public UserRepository getUserRepository() {
+		return userRepository;
+	}
+
+	public void setUserRepository(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
+	
+	
 }

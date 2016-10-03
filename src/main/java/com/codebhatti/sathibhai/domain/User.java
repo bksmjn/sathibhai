@@ -2,6 +2,7 @@ package com.codebhatti.sathibhai.domain;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -30,37 +31,40 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 982569218749893173L;
 	private static final String DOMAIN_PREFIX = "com.codebhatti.sathibhai.domain.User";
 	public static final String FINDALL = DOMAIN_PREFIX + "FINDALL";
+	
+	public User(String emailAddress, String firstName, String lastName){
+		this.emailAddress=emailAddress;
+		this.firstName=firstName;
+		this.lastName=lastName;
+		//this.addresses=addresses;
+		
+	}
 
 	@Id
 	@Column(name = "email_address")
 	private String emailAddress;
 
 	@Column(name = "first_name")
-	@NotNull
 	private String firstName;
 	@Column(name = "middle_name")
 	private String middleName;
 
 	@Column(name = "last_name")
-	@NotNull
 	private String lastName;
 
 	@Column(name = "country_of_origin")
-	@NotNull
 	private String countryOfOrigin;
 	@Column(name = "dob")
-	@NotNull
 	private String dateOfBirth;
 	@Column(name = "phone_number")
 	private String phoneNumber;
 	@Column(name = "mobile_number")
-	@NotNull
 	private String mobileNumber;
 	@Column(name = "ssn")
 	private String socialSecurityNo;
 
-	@OneToMany(mappedBy = "user", cascade=CascadeType.ALL)
-	private Set<Address> addresses;
+	@OneToMany(mappedBy = "user", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private Set<Address> addresses=new HashSet<>();
 
 	private String password;
 	private String secretAnswer1;
@@ -70,7 +74,6 @@ public class User implements Serializable {
 	private boolean isActive;
 
 	public User() {
-		this.addresses = new HashSet<Address>();
 	}
 
 	public String getEmailAddress() {
@@ -145,15 +148,9 @@ public class User implements Serializable {
 		this.socialSecurityNo = socialSecurityNo;
 	}
 
-	public Set<Address> getAddresses() {
-		return addresses;
-	}
-
-	public void setAddresses(Set<Address> addresses) {
-		this.addresses = addresses;
-	}
-
 	public void addAddress(Address address) {
+		if(address==null)
+			throw new IllegalArgumentException("Address is NULL");
 		this.addresses.add(address);
 	}
 

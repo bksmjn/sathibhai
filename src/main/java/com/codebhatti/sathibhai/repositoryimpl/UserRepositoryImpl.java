@@ -47,4 +47,13 @@ public class UserRepositoryImpl implements UserRepository {
 
 	}
 
+	public EntityManagerWrapper getEntityManagerWrapper() {
+		return entityManagerWrapper;
+	}
+
+	public void setEntityManagerWrapper(EntityManagerWrapper entityManagerWrapper) {
+		this.entityManagerWrapper = entityManagerWrapper;
+	}
+
+	
 }

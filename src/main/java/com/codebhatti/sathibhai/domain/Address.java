@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,14 +22,15 @@ public class Address implements Serializable {
 	}
 
 	@Id
-	private String addressCode;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long addressCode;
 	private String street;
 	private String city;
 	private String zipCode;
 	private String state;
 	private AddressType addressType;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 
@@ -35,11 +38,11 @@ public class Address implements Serializable {
 
 	}
 
-	public String getAddressCode() {
+	public Long getAddressCode() {
 		return addressCode;
 	}
 
-	public void setAddressCode(String addressCode) {
+	public void setAddressCode(Long addressCode) {
 		this.addressCode = addressCode;
 	}
 

@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan({ "com.codebhatti.sathibhai.configuration" })
+@ComponentScan({ "com.codebhatti.sathibhai.*" })
 @PropertySource(value = { "classpath:application.properties" })
 public class PersistenceJPAConfig {
 
