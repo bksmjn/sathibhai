@@ -5,6 +5,8 @@ import com.sathibhai.model.user.Role;
 import com.sathibhai.model.user.User;
 import com.sathibhai.service.UserService;
 import com.sathibhai.utils.SpringUtils;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/secure/user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/secure/user")
 @ResponseStatus(HttpStatus.OK)
 public class UserController {
 
@@ -27,8 +29,9 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public User addUser(@RequestBody User user) {
+	@ApiOperation(value = "createUser", nickname = "createUser", response = User.class)
+	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public User addUser(@ApiParam("User Detail Object") User user) {
 		try {
 			this.userService.add(user);
 			return user;
@@ -38,7 +41,8 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@ApiOperation(value = "update", nickname = "createUser", response = User.class)
+	@RequestMapping(value = "/update", method = RequestMethod.PUT)
 	public User updateUser(@Valid @RequestBody User user, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
