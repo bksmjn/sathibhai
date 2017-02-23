@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-<title>Login | SathiBhai App</title>
+<title>Login | SathiBhai.com</title>
 <link rel="stylesheet" type="text/css"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
 	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
@@ -22,11 +22,15 @@
 	font-size: 27px;
 }
 
-.loginform .btn-default {
+.loginform .btn-primary, .loginform .btn-success {
 	width: 100%;
-	background: #D4001C;
 	color: #fff;
 	padding: 10px;
+	margin:5px 0px;
+}
+
+.loginform .btn-primary {
+	background: #D4001C;
 	border: 1px solid #D4001C;
 }
 
@@ -45,7 +49,7 @@
 <body>
 	<div class="loginform">
 		<div id="logo">
-			<img src="" alt="SathiBhai.com" />
+			<img src="../static/images/logo.png" alt="Cubic App" />
 		</div>
 		<p>Login to SathiBhai.com</p>
 		<span class="text-danger" th:if="${param.error}">Invalid username
@@ -62,7 +66,8 @@
 				<input type="password" name="password" class="form-control"
 					placeholder="Password" />
 			</div>
-			<button type="submit" class="btn btn-default">Login</button>
+			<button type="submit" class="btn btn-primary">Login</button>
+			<a href="/signup" class="btn btn-success">Sign Up</a>
 		</form>
 	</div>
 </body>
