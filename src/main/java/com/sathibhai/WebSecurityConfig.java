@@ -14,6 +14,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+	
 	@Autowired
 	DataSource dataSource;
 
@@ -44,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.passwordEncoder(new BCryptPasswordEncoder())
 				.dataSource(dataSource)
 				.usersByUsernameQuery(
-						"select email,password, enable from users where email=?")
+						"select email, password, enable from users where email=?")
 				.authoritiesByUsernameQuery(
 						"select email, role from users where email=?");
 
